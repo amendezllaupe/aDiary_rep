@@ -62,10 +62,10 @@ public class CreacionUsuario {
 			usr.setNombre(this.nombreUsrNuevo);
 			usr.setContrasena(this.contrasenaUsrNuevo);
 			usr.SetContrasenaControlParental(contraseñaParentalUsrNuevo);
-			if(this.perfilNuevo != "default" && this.perfilNuevo != "") {
-				usr.setPerfilActivo(this.perfilNuevo);
-				usr.getPerfiles().add(this.perfilNuevo);
-			}
+			
+			usr.setPerfilActivo(this.perfilNuevo);
+			usr.getPerfiles().add(this.perfilNuevo);
+			
 			return usr;
 		}
 		return null;

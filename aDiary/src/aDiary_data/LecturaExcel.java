@@ -19,6 +19,8 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.CellValue;
+import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -107,7 +109,22 @@ public class LecturaExcel {
                     for (int j=0 ; j < cellNum; j++) { 
                         Dato aux = new Dato();
                         try{
-                            aux.setContenido(filas.getCell(j).getStringCellValue());
+                            try{
+                            	aux.setContenido(filas.getCell(j).getStringCellValue());
+                            }catch(IllegalStateException e){
+                            	try {
+                            		aux.setContenido(Boolean.toString(filas.getCell(j).getBooleanCellValue()));
+                            	}catch(IllegalStateException a) {
+                            		try{
+                                		FormulaEvaluator evaluator = excelWorkbook.getCreationHelper().createFormulaEvaluator();
+                                		CellValue newCell = evaluator.evaluate(filas.getCell(j));
+                                		aux.setContenido(newCell.getStringValue());
+                                	}catch(IllegalStateException ae) {
+                                		aux.setContenido("##OTHER");
+                                	}
+                            	}
+                            	
+                            }
                         } catch (NullPointerException e){
                             aux.setContenido("EMPTYCELL");
                         }

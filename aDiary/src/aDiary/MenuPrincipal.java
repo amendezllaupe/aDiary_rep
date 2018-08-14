@@ -1,5 +1,6 @@
 package aDiary;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import aDiary_data.BusquedaDatos;
@@ -49,7 +50,7 @@ public class MenuPrincipal {
 	public void obtenerMisionesDia() {
 		
 		ManejoDatos manejo = new ManejoDatos();
-		String rutaExcel = "./usrdata/" + this.propietarioActivo.getNombre() + "/" + this.propietarioActivo.getPerfilActivo();
+		String rutaExcel = "./usrdata/" + this.propietarioActivo.getNombre() + "/" + "admin-"+this.propietarioActivo.getNombre() + "/misiones.xlsx";
 		manejo.solicitarDatos(rutaExcel);
 		ArrayList<Dato> data = manejo.getDatos();
 		BusquedaDatos busqueda = new BusquedaDatos();
@@ -61,7 +62,7 @@ public class MenuPrincipal {
 			int fila = fechaMision.getFila();
 			if(verificarDatosMision(fila, data)) {
 				ArrayList <Dato> datosFiltrados = entregarDatosFiltrados(fila, data);
-				Mision mision = new Mision(datosFiltrados.get(1).getContenido(), Boolean.valueOf(datosFiltrados.get(2).getContenido()));
+				Mision mision = new Mision(datosFiltrados.get(1).getContenido(), false);
 				this.misionesDia.getMisiones().add(mision);
 			}
 			
@@ -85,7 +86,7 @@ public class MenuPrincipal {
 				contador += 1;
 			}
 		}
-		
+
 		if(contador == 3) {
 			return true;
 		}else {

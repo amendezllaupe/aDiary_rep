@@ -54,8 +54,7 @@ public class Login {
 	}
 	
 	private boolean compararContraseñas(ArrayList<Dato> datos, Dato dato) {
-		// TODO - implement Login.compararContrasenas
-		return datos.get(dato.getColumna()+1).getContenido().equals(this.contrasenaIngresada);
+		return datos.get(dato.getFila()*5+1).getContenido().equals(this.contrasenaIngresada);
 	}
 
 	private Dato buscarUsuario(ArrayList<Dato> datos) {
@@ -66,6 +65,7 @@ public class Login {
 			//segunda condicion solo acepta la operacion si la columna corresponde al usuario.
 			if(datos.get(i).getContenido().equals(this.nombreIngresado) && datos.get(i).getColumna() == 0) {
 				return datos.get(i);
+				
 			}
 		}
 		return null;

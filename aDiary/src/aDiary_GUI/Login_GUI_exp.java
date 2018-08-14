@@ -30,6 +30,7 @@ public class Login_GUI_exp extends JFrame implements ActionListener{
         addWindow();
         
         this.ingresoButton.addActionListener(this);
+        this.creacionUsuarioButton.addActionListener(this);
     }
     
     public void initComponents(){
@@ -81,12 +82,16 @@ public class Login_GUI_exp extends JFrame implements ActionListener{
 				System.out.println(usr);
 				MenuPrincipal_GUI menu = new MenuPrincipal_GUI(usr.getNombre(), "Menu");
 				menu.setUsrActivo(usr);
-				;
+				menu.initSearchMisiones();
 				menu.setVisible(true);
 				this.dispose();
 			}else {
 				JOptionPane.showMessageDialog(this, "Usuario o Contraseña erroneos");
 			}
+		}else if(ae.getSource() == this.creacionUsuarioButton) {
+			CreacionUsuario_GUI_exp creacionUsr= new CreacionUsuario_GUI_exp("Crear Usuario");
+			creacionUsr.setVisible(true);
+			this.dispose();
 		}
 	}
     

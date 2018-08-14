@@ -76,10 +76,10 @@ public class ManejoDatos {
         LecturaExcel read = new LecturaExcel();
         read.leerExcel(rutaExcel);
         if(!read.isEstadoLeerExcel()) {
-        	return true;
+        	return false;
         }else {
         	this.datos = read.getDatos();
-        	return false;
+        	return true;
         }
     }
     

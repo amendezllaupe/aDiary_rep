@@ -36,6 +36,11 @@ public class Mision {
 		this.mision = mision;
 		this.isCompleted = isCompleted;
 	}
+    
+    public Mision() {
+    	this.mision = "";
+    	this.isCompleted = false;
+    }
 
 	/**
      * Asigna una nueva mision a la insiancia de esta clase.

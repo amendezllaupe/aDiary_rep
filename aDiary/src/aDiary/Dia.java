@@ -8,19 +8,19 @@ public class Dia {
 	//private Horario horario;
 	//private Historial historial;
 	private ArrayList<Mision> misiones;
-	private LocalTime fecha;
+	private LocalDate fecha;
 	private int dia;
 
 	public Dia() {
 		// TODO - implement Dia.Dia
-		setFecha(LocalTime.now());
+		fecha = LocalDate.now();
 		dia = 0;
 		misiones = new ArrayList<>();
 	}
 
 	public ArrayList<Mision> getMisiones() {
 		// TODO - implement Dia.getHoras
-		throw new UnsupportedOperationException();
+		return this.misiones;
 	}
 
 	public String almacenarElementosDeHoras() {
@@ -37,14 +37,14 @@ public class Dia {
 	/**
 	 * @return the fecha
 	 */
-	public LocalTime getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
 
 	/**
 	 * @param fecha the fecha to set
 	 */
-	public void setFecha(LocalTime fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 

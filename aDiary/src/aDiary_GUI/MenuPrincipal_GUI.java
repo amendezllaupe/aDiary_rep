@@ -6,6 +6,7 @@ import javax.swing.*;
 
 import aDiary.MenuPrincipal;
 import aDiary.Propietario;
+import aDiary.Recompensa;
 
 public class MenuPrincipal_GUI extends JFrame implements ActionListener{
 	
@@ -15,6 +16,10 @@ public class MenuPrincipal_GUI extends JFrame implements ActionListener{
 	private JButton configuracionButton;
 	private JButton usuarioButton;
 	private JProgressBar progresoMisiones;
+	
+	private JTextField stringMision;
+	
+	private JCheckBox checkBox;
 	
 	private Propietario usrActivo;
 	
@@ -31,6 +36,9 @@ public class MenuPrincipal_GUI extends JFrame implements ActionListener{
 		this.horarioButton.addActionListener(this);
 		this.configuracionButton.addActionListener(this);
 		this.usuarioButton.addActionListener(this);
+		
+		this.checkBox.addActionListener(this);
+		
 	}
 	
 	public void initComponents(String nombreUsr) {
@@ -38,6 +46,12 @@ public class MenuPrincipal_GUI extends JFrame implements ActionListener{
 		this.historialButton = new JButton("Historial de misiones");
 		this.configuracionButton = new JButton("Configuración");
 		this.usuarioButton = new JButton(nombreUsr);
+		
+		this.stringMision = new JTextField();
+		this.stringMision.setEditable(false);
+		
+		this.checkBox = new JCheckBox();
+		
 	
 	}
 	
@@ -51,6 +65,9 @@ public class MenuPrincipal_GUI extends JFrame implements ActionListener{
 		this.historialButton.setBounds(550, 140, 150, 35);
 		this.configuracionButton.setBounds(550, 200, 150, 35);
 		this.usuarioButton.setBounds(550, 320, 150, 70);
+		
+		this.stringMision.setBounds(120, 80, 150, 30);
+		this.checkBox.setBounds(280, 80, 20,20);
 	}
 	
 	private void addWindow() {
@@ -58,6 +75,8 @@ public class MenuPrincipal_GUI extends JFrame implements ActionListener{
 		this.add(this.horarioButton);
 		this.add(this.configuracionButton);
 		this.add(this.usuarioButton);
+		this.add(this.stringMision);
+		this.add(this.checkBox);
 		this.add(new JLabel());
 	}
 
@@ -70,7 +89,20 @@ public class MenuPrincipal_GUI extends JFrame implements ActionListener{
 			config.setUsrActivo(this.usrActivo);
 			config.setVisible(true);
 			this.dispose();
+		}else if(ae.getSource() == this.checkBox && this.checkBox.isSelected()){
+			
+			Recompensa recompensa = new Recompensa();
+			JOptionPane.showMessageDialog(this,"Su recompensa es: " + recompensa.getRecompensa().get(0));
+		}else if(ae.getSource() == this.checkBox && !this.checkBox.isSelected()){
+			
 		}
+	}
+	
+	public void initSearchMisiones() {
+		this.menu = new MenuPrincipal();
+		this.menu.setPropietarioActivo(this.usrActivo);
+		this.menu.obtenerMisionesDia();
+		this.stringMision.setText(this.menu.getMisionesDia().getMisiones().get(0).getMision());
 	}
 
 	/**
