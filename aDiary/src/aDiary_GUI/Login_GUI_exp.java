@@ -75,11 +75,8 @@ public class Login_GUI_exp extends JFrame implements ActionListener{
 			String password = new String(this.contraseñaTF.getPassword());
 			login.setContrasenaIngresada(password);
 			if(login.validarLogin()) {
-				JOptionPane.showMessageDialog(this, "Operacion exitosa");
 				ManejoDatos manejo = new ManejoDatos();
 				Propietario usr = manejo.creacionPropietario(login.getNombreIngresado(), login.getContrasenaIngresada());
-				JOptionPane.showMessageDialog(this, usr);
-				System.out.println(usr);
 				MenuPrincipal_GUI menu = new MenuPrincipal_GUI(usr.getNombre(), "Menu");
 				menu.setUsrActivo(usr);
 				menu.initSearchMisiones();

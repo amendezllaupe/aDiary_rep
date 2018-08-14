@@ -10,7 +10,6 @@ import aDiary.CreacionUsuario;
 import aDiary.Propietario;
 
 public class CreacionUsuarioTest {
-
 	@Test
 	public void test() {
 		ManejoDatosTest init = new ManejoDatosTest();

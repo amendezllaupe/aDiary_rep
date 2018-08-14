@@ -112,18 +112,13 @@ public class LecturaExcel {
                             try{
                             	aux.setContenido(filas.getCell(j).getStringCellValue());
                             }catch(IllegalStateException e){
-                            	try {
-                            		aux.setContenido(Boolean.toString(filas.getCell(j).getBooleanCellValue()));
-                            	}catch(IllegalStateException a) {
-                            		try{
-                                		FormulaEvaluator evaluator = excelWorkbook.getCreationHelper().createFormulaEvaluator();
-                                		CellValue newCell = evaluator.evaluate(filas.getCell(j));
-                                		aux.setContenido(newCell.getStringValue());
-                                	}catch(IllegalStateException ae) {
-                                		aux.setContenido("##OTHER");
-                                	}
+                            	try{
+                            		FormulaEvaluator evaluator = excelWorkbook.getCreationHelper().createFormulaEvaluator();
+                            		CellValue newCell = evaluator.evaluate(filas.getCell(j));
+                            		aux.setContenido(newCell.getStringValue());
+                            	}catch(IllegalStateException ae) {
+                            		aux.setContenido("##OTHER");
                             	}
-                            	
                             }
                         } catch (NullPointerException e){
                             aux.setContenido("EMPTYCELL");

@@ -66,7 +66,7 @@ public class MenuPrincipal_GUI extends JFrame implements ActionListener{
 		this.configuracionButton.setBounds(550, 200, 150, 35);
 		this.usuarioButton.setBounds(550, 320, 150, 70);
 		
-		this.stringMision.setBounds(120, 80, 150, 30);
+		this.stringMision.setBounds(20, 80, 250, 30);
 		this.checkBox.setBounds(280, 80, 20,20);
 	}
 	
@@ -90,11 +90,13 @@ public class MenuPrincipal_GUI extends JFrame implements ActionListener{
 			config.setVisible(true);
 			this.dispose();
 		}else if(ae.getSource() == this.checkBox && this.checkBox.isSelected()){
-			
+			this.menu.getMisionesDia().getMisiones().get(0).setIsCompleted(true);
 			Recompensa recompensa = new Recompensa();
+			this.stringMision.setText(this.menu.getMisionesDia().getMisiones().get(0).getMision() + "   " + this.menu.getMisionesDia().getMisiones().get(0).getIsCompleted());
 			JOptionPane.showMessageDialog(this,"Su recompensa es: " + recompensa.getRecompensa().get(0));
 		}else if(ae.getSource() == this.checkBox && !this.checkBox.isSelected()){
-			
+			this.menu.getMisionesDia().getMisiones().get(0).setIsCompleted(false);
+			this.stringMision.setText(this.menu.getMisionesDia().getMisiones().get(0).getMision() + "   " + this.menu.getMisionesDia().getMisiones().get(0).getIsCompleted());
 		}
 	}
 	
@@ -102,7 +104,7 @@ public class MenuPrincipal_GUI extends JFrame implements ActionListener{
 		this.menu = new MenuPrincipal();
 		this.menu.setPropietarioActivo(this.usrActivo);
 		this.menu.obtenerMisionesDia();
-		this.stringMision.setText(this.menu.getMisionesDia().getMisiones().get(0).getMision());
+		this.stringMision.setText(this.menu.getMisionesDia().getMisiones().get(0).getMision() +"   " + this.menu.getMisionesDia().getMisiones().get(0).getIsCompleted());
 	}
 
 	/**

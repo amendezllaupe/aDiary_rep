@@ -76,7 +76,7 @@ public class CreacionUsuario_GUI_exp extends JFrame implements ActionListener {
 			creacion.setPerfilNuevo("admin-" + this.usuarioTF.getText());
 			Propietario usr = creacion.crearUsuario(new String(this.verificarContraseñaTF.getPassword()));
 			if(usr != null) {
-				JOptionPane.showMessageDialog(this, "Operación realizada con exito, presione 'OK' o cierre esta ventana para entrar en la aplicación");
+				JOptionPane.showMessageDialog(this, "Se ha creado su usuario, presione 'Aceptar' o cierre esta ventana para entrar en la aplicación");
 				creacion.guardarUsuario(usr);
 				MenuPrincipal_GUI menu = new MenuPrincipal_GUI(usr.getNombre(),"Menu");
 				menu.setUsrActivo(usr);
@@ -85,7 +85,7 @@ public class CreacionUsuario_GUI_exp extends JFrame implements ActionListener {
 				this.dispose();
 				
 			}else {
-				JOptionPane.showMessageDialog(this, "Verificacion de contraseñas incorrect, intente nuevamente");
+				JOptionPane.showMessageDialog(this, "Verificacion de contraseñas incorrecta, intente nuevamente");
 			}
 			
 			
